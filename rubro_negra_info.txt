@@ -1,0 +1,183 @@
+Toda árvore rubro-negra deve seguir essas regras:
+
+Regra 1: todo nó possui cor vermelha ou preta
+Regra 2: a raiz sempre será preta
+Regra 3: todo nó folha possui cor preta
+Regra 4: se um nó é vermelho então ambos os seus filhos são pretos
+Regra 5: para cada nó, todos os caminhos deste nó até os nós folha da
+         sua subárvore possuem o mesmo número de nós pretos
+
+Obs: quando um nó é criado, sua cor é sempre vermelha
+
+
+
+
+                    ** CASOS DE BALANCEAMENTO NA INSERÇÃO **
+
+-----------------------CASO 1: PAI É FILHO ESQUERDO DO AVÔ-----------------------
+
+    1A: Tio é vermelho (recoloração)
+
+                          (Avô) preto
+                        /          \
+                    (Pai) vermelho  (Tio) vermelho
+                        \
+                        (no) vermelho
+
+    Problema: pai e tio são vermelhos, quebrando a Regra 4
+    Solução: pai vira preto
+             tio vira preto
+             avô vira vermelho
+             no = avo (continua subindo e balanceando)
+
+                          (Avô) vermelho
+                        /          \
+                    (Pai) preto     (Tio) preto
+                        \
+                        (no) vermelho
+
+----------------------------------------------------------------------------------
+
+    1B: Tio é preto (rotação)
+
+        1B.1 Triângulo (nó é filho direito do pai)
+
+                         (Avô) (preto)
+                        /
+                    (Pai) (vermelho)
+                        \
+                        (no) (vermelho)
+
+        Problema: pai e nó são vermelhos + forma de triângulo impede correção direta
+        Solução: rotação à esquerda no pai + caso 1B.2
+
+                       (Avô) (preto)
+                       /
+                    (N) (vermelho)
+                    /
+                  (P) (vermelho)
+
+----------------------------------------------------------------------------------
+
+        1B.2 Linha (nó é filho esquerdo do pai)
+
+                     (Avô) (preto)
+                    /
+                (Pai) (vermelho)
+                /
+            (no) (vermelho)
+
+        Problema: pai e nó são vermelhos
+        Solução: pai fica preto
+                 avô fica vermelho
+                 rotação à direita no avô
+
+                        (P) PRETO
+                        /     \
+                      (N)     (A) VERMELHO
+
+----------------------------------------------------------------------------------
+
+O caso 2 na inserção é o simétrico do caso 1, simplesmente trocamos
+direita por esquerda em todos os subcasos
+
+----------------------------------------------------------------------------------
+
+
+
+
+
+
+                    ** CASOS DE BALANCEAMENTO NA REMOÇÃO **
+
+----------------------------CASO 1: x É FILHO ESQUERDO----------------------------
+
+    1A: Irmão w é vermelho
+
+                     (pai) preto
+                    /        \
+                (x) preto  (w) vermelho
+
+    Problema: irmão vermelho impede correção porque viola estrutura
+    Solução: w vira preto
+             pai vira vermelho
+             rotação esquerda no pai
+
+                     (w) PRETO
+                    /         \
+            (pai) VERMELHO    ...
+                /
+               (x) PRETO
+
+----------------------------------------------------------------------------------
+
+    1B: w é preto e os dois filhos de w são pretos
+
+                     (pai) COR?
+                    /          \
+                (x) PRETO     (w) PRETO
+                             /        \
+                        PRETO           PRETO
+
+    Problema: w e seus filhos não têm “preto extra” para emprestar ao x (duplo preto)
+    Solução: w fica vermelho
+             balanceia pra cima (x = pai)
+
+                     (pai) COR?
+                    /          \
+                (x) PRETO     (w) VERMELHO
+                                /        \
+                           PRETO         PRETO
+
+----------------------------------------------------------------------------------
+
+    1C: w é preto, com filho esquerdo vermelho e filho direito preto
+
+                             (pai)
+                            /     \
+                        (x)       (w) PRETO
+                                  /        \
+                             (filhoE)     (filhoD)
+                             VERMELHO       PRETO
+
+    Problema: a forma impede resolver diretamente, pois o filho vermelho está “perto”
+    Solução: filho esquerdo de w fica preto
+             w fica vermelho
+             rotação direita em w
+
+                     (pai)
+                    /     \
+                (x)    (filhoE) PRETO
+                            \
+                            (w) VERMELHO
+                              \
+                           (filhoD) PRETO
+
+----------------------------------------------------------------------------------
+
+    1D: w é preto, e seu filho direito é vermelho
+
+                        (pai) COR_?
+                        /          \
+                (x) PRETO    (w) PRETO
+                                    \
+                                    (filhoD) VERMELHO
+
+    Problema: existe um filho “distante” vermelho, que permite correção final
+    Solução: w fica com a cor do pai (COR_?)
+             pai fica preto
+             filho direito de w fica preto
+             rotação à esquerda no pai
+
+                        (w) COR_?
+                        /        \
+                (pai) PRETO   (filhoD) PRETO
+                    /
+                (x) PRETO
+
+----------------------------------------------------------------------------------
+
+O caso 2 na remoção é o simétrico do caso 1, simplesmente trocamos
+direita por esquerda em todos os subcasos
+
+----------------------------------------------------------------------------------
