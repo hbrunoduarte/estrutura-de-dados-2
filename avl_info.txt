@@ -1,0 +1,58 @@
+Uma árvore AVL é simplesmente uma árvore binária de busca com balanceamento de 
+nós baseado em seu fator de balanceamento (FB), onde:
+
+                    FB = altura(no->esq) - altura(no->dir)
+
+Quando o fator de balanceamento está fora do intervalo [-1, 1] dizemos que a árvore
+está desbalanceada. Para balanceá-la, relizamos uma série de rotações para reestruturar
+a árvore e manter seu balanceamento.
+
+Possui remoção, inserção e busca O(log n).
+
+----------------------------------------------------------------------------------
+                            Rotação Simples à Direita
+
+* Usado um caso esquerda-esquerda (LL)
+
+                            A                    B
+                           /                    / \
+                          B          ->        C   A
+                         /
+                        C
+
+----------------------------------------------------------------------------------
+                            Rotação Simples à esquerda
+
+* Usado um caso direita-direita (RR)
+
+                      A                          B
+                       \                        / \
+                        B            ->        A   C
+                         \
+                          C
+
+----------------------------------------------------------------------------------
+                          Rotação Dupla Esquerda-Direita
+
+* Usado em caso esquerda-direita (LR)
+
+            A                      A                      C
+           /                      /                      / \
+          B         ->           C          ->          B   A
+           \                    /
+            C                  B
+
+OBS: rotação simples à esquerda seguido de rotação simples à direita
+
+----------------------------------------------------------------------------------
+                          Rotação Dupla Direita-Esquerda
+
+* Usado em caso direita-esquerda (RL)
+
+          A                        A                          C
+           \                        \                        / \
+            B       ->               C          ->          A   B
+           /                          \
+          C                            B
+
+OBS: rotação simples à direita seguido de rotação simples à esquerda
