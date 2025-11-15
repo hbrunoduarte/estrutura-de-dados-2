@@ -1,0 +1,81 @@
+Tabelas hash são estruturas de dados onde, dado uma chave e um valor, armazenamos
+tal entrada dentro de uma estrutura que possui uma indexação baseada em uma função
+de hash elaborada de modo que colisões sejam evitadas.
+
+Estudamos dois tipos de tabelas hash:
+
+----------------------------------------------------------------------------------
+                       Tabela Hash com Endereçamento Aberto
+
+- Usamos alocação direta simples sem tratamento de colisão;
+
+- Guarda as entradas em um vetor;
+
+- Cada posição do vetor guarda apenas um ponteiro para uma entrada.
+
+----------------------------------------------------------------------------------
+                       Tabela Hash com Tratamento de Colisão
+
+- Ao invés de usarmos um vetor, usamos nós encadeados;
+
+- A hash guarda um vetor indexado de nós, onde cada posição contém a referência
+  do primeiro nó de uma lista encadeade de nós;
+
+- Cada nó guarda uma informação e uma referência para o próximo nó da lista;
+
+- Entradas diferentes são armazenadas no mesmo nó caso, dada uma chave específica,
+  a função de hash tenha resultado em um índice no vetor onde uma informação já
+  havia sido guardada;
+
+- Deste modo, entradas que acabaram tendo o mesmo índice pela função de hash são
+  armazenadas na mesma lista de nós no vetor.
+
+----------------------------------------------------------------------------------
+
+Dado uma chave, calculamos um índice onde guardaremos a informação dada. Para isso,
+utilizamos funções hash para tentar calcular valores únicos para cada chave que serão
+utilizados como índice no vetor da hash.
+
+----------------------------------------------------------------------------------
+                                Método da Divisão
+
+- O índice é simplesmente o resto da divisão da chave pelo tamanho da tabela.
+
+- Podemos fazer "chave & 0x7FFFFFFF" para garantir que a chave será positiva Ao
+  invés de usar uma função de módulo para maior eficiência.
+
+                        return (chave & 0x7FFFFFFF) % tamanho;
+
+- tamanho da tabela não deve ser potência de 2, pois podem ocorrer muitas
+  colisões. Usam-se números primos
+
+----------------------------------------------------------------------------------
+                            Método da Multiplicação
+
+- Multiplicamos a chave por uma constante A, um número real entre 0 e 1.
+
+- Extraimos somente a parte fracionária:
+
+                            i = i - (int) i;
+
+- Multiplicamos a fração pelo tamanho da tabela:
+
+                        return (int) (tamanho * i);
+
+- Por mais que possua uma ótima distribuição de chaves e não dependa do valor
+  do tamanho da tabela, é mais lenta pois utiliza floats e depende de precisão
+  de ponto flutuante
+
+----------------------------------------------------------------------------------
+                                Método da Dobra
+
+- "Dobramos" o índice em dois, somamos as partes dobradas e depois aplicamos
+  mod disso com o tamanho da tabela.
+
+- Exemplo: 5 2 9 3 6 4 1 0 -> 6 4 1 0   -> indice = 9 3 3 5 % tamanho 
+                              3 9 2 5 +
+
+- Na soma, quando passamos de 10 simplesmente colocamos a segunda casa decimal
+  como resultado.
+
+----------------------------------------------------------------------------------
