@@ -56,3 +56,12 @@ OBS: rotação simples à esquerda seguido de rotação simples à direita
           C                            B
 
 OBS: rotação simples à direita seguido de rotação simples à esquerda
+
+----------------------------------------------------------------------------------
+                                    Percursos
+
+Pré-ordem (N-E-D): visita o nó primeiro, depois subárvore esquerda, depois direita.
+
+Em-ordem (E-N-D): imprime os valores em ordem crescente em qualquer árvore de busca.
+
+Pós-ordem (E-D-N): visita os filhos primeiro e só depois o nó.
