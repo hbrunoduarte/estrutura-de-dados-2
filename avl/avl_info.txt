@@ -65,3 +65,33 @@ Pré-ordem (N-E-D): visita o nó primeiro, depois subárvore esquerda, depois di
 Em-ordem (E-N-D): imprime os valores em ordem crescente em qualquer árvore de busca.
 
 Pós-ordem (E-D-N): visita os filhos primeiro e só depois o nó.
+
+Exemplo: 
+
+                                   A
+                                  / \
+                                 B   C
+                                / \   \
+                               D   E   F
+
+Pré-Ordem: A B D E C F
+
+Em Ordem: D B E A C F
+
+Pós-Ordem: D E B F C A
+
+----------------------------------------------------------------------------------
+                                    Remoção
+
+CASO 1: o nó a ser removido não tem filhos (folha)
+
+    -> simplesmente removemos o nó e balanceamos árvore
+
+CASO 2: o nó a ser removido tem um filhos
+
+    -> substituir o nó pelo seu único filho e balancear a árvore
+
+CASO 3: o nó a ser removido tem dois filhos
+
+    -> pegamos o nó mais da esquerda do filho da direita e substituimos, depois
+       rebalanceamos a árvore

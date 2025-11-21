@@ -9,7 +9,11 @@ Regra 5: para cada nó, todos os caminhos deste nó até os nós folha da
 
 Obs: quando um nó é criado, sua cor é sempre vermelha
 
+A árvore rubro-negra é mais rápida nas operações de inserção e remoção de nós
+do que a AVL, mas é mais lenta na operação de busca.
 
+A AVL, possui o balanceamento mais rígido que a rubro-negra, o que acelera a busca,
+mas exige esforço computacional maior para inserção e remoção.
 
 
                     ** CASOS DE BALANCEAMENTO NA INSERÇÃO **

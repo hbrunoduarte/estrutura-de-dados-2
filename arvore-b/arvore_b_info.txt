@@ -1,0 +1,30 @@
+São estruturas de árvore autobalanceada para dados classificados, possui complexidade
+de tempo logarítmico O(log(n)).
+
+É recomendada para classificação externa, trabalha com dados em memória secundária.
+Objetiva reduzir o acesso aos dispositivos de memória secundária.
+
+---------------------------------------------------------------------------------
+
+Cada nó da árvore armazena um conjunto não vazio de chaves, que devem ser armazenadas
+em ordem crescente. Nós também são chamados de páginas.
+
+A ordem M de uma árvore B representa um tamanho mínimo para a quantidade de chaves
+em um nó, que também deve ter um tamanho máximo 2*M. A raiz não possui tamanho
+máximo, apenas mínimo.
+
+Tem ponteiros entre os valores da árvore que gera um limite inferior e superior. Para
+os novos nós inseridos.
+
+Os filhos de um nó é igual ao número de chaves mais um.
+
+---------------------------------------------------------------------------------
+                                    Inserção
+
+Procuramos o nó em que deverá ser inserida a chave, depois de inserida, verificamos
+se a quantidade máxima de chaves foi ultrapassada. Se sim, temos que dividir o nó
+em dois, o pai desses dois nós sera a chave do meio. Caso haja outro overflow ao
+realizar o split, vamos repetindo o processo árvore acima. Uma nova raíz pode acabar
+sendo definida.
+
+---------------------------------------------------------------------------------
