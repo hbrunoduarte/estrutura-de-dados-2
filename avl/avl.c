@@ -110,7 +110,7 @@ NoAVL* remover(NoAVL* raiz, int chave) {
     if(chave < raiz->chave) {
         raiz->esq = remover(raiz->esq, chave);
     } else if(chave > raiz->chave) {
-        raiz->dir = remove(raiz->dir, chave);
+        raiz->dir = remover(raiz->dir, chave);
     } else {
         // casos
     }
